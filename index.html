@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<html>
+
+<link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400" rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .curve, .line {
+    fill: none;
+    stroke-width: 1px;
+  }
+  .curve {
+    stroke: red;
+    stroke-width: 3px;
+  }
+  .control {
+    fill: #ccc;
+    stroke: #000;
+    stroke-width: .5px;
+  }
+  .t, .controltext {
+    font-family: "Yanone Kaffeesatz";
+    font-weight: 400;
+    font-size: 1em;
+  }
+</style>
+<body>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	<div class="container">
+	  <div class="row">
+	    <div class="col-sm" id="canvas1">
+	      One of three columns
+	    </div>
+	    <div class="col-sm" id="canvas2">
+	      One of three columns
+	    </div>
+	    <div class="col-sm" id="canvas3">
+	      One of three columns
+	    </div>
+			<div class="col-sm" id="canvas4">
+	      One of three columns
+	    </div>
+	  </div>
+	</div>
+
+  <script src="canvas1.js"></script>
+  <script src="canvas2.js"></script>
+</body>
+</html>

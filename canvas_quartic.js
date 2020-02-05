@@ -1,13 +1,15 @@
 var w = 200,
     h = 300,
-    t = 0.1,
+    t = 0,
     delta = .01,
     padding = 10,
-    pointsQuartic = [{x: 20, y: 250}, {x: 20, y: 30},{x: 100, y: 20},{x:150,y:150}],
+    pointsQuartic = [{x: 20, y: 250}, {x: 20, y: 30},{x: 100, y: 20},{x:150,y:150},{x:175,y:230}],
     bezierQuartic = {},
     lineQuartic = d3.svg.line().x(x_Quartic).y(y_Quartic),
     n = 4,
     ordersQuartic = d3.range(5, n + 2);
+
+var dotQuarticPoints = {};
 
 var visQuartic = d3.select("#canvasQuartic").selectAll("svg")
     .data(ordersQuartic)
@@ -76,11 +78,12 @@ function updateQuartic() {
       .attr("class", "curve1");
   curveQuartic.attr("d", lineQuartic);
 
-  var dotQuartic = visQuartic.selectAll("circle")
-      .data(getCurveQuartic1)
+  $(".dotQuartic").remove();
+  var dotQuartic = visQuartic.selectAll("circle.dotQuartic")
+      .data(dotQuarticPoints)
       .enter().append("circle")
-      .attr("class", "dot")
-    .attr("r",2)
+      .attr("class", "dotQuartic")
+    .attr("r",1.3)
     .attr("cx", function(d,i) { return d.x; })
     .attr("cy", function(d,i) { return d.y; });
 
@@ -100,7 +103,7 @@ function interpolateQuartic(d, p) {
 function getLevelsQuartic(d, t_) {
   if (arguments.length < 2) t_ = t;
   var x = [pointsQuartic.slice(0, d)];
-  for (var i=1; i<4; i++) {
+  for (var i=1; i<5; i++) {
     x.push(interpolateQuartic(x[x.length-1], t_));
   }
   return x;
@@ -124,6 +127,8 @@ function getCurveQuartic(d) {
       curve.push(x[x.length-1][0]);
     }
   }
+  dotQuarticPoints = curve.slice(0, t / delta + 1);
+  console.log(dotQuarticPoints);
   return [curve.slice(0, t / delta + 1)];
 }
 

@@ -9,6 +9,8 @@ var w = 200,
     n = 4,
     ordersQuadratic = d3.range(5, n + 2);
 
+var dotQuadraticPoints = {};
+
 var visQuadratic = d3.select("#canvasQuadratic").selectAll("svg")
     .data(ordersQuadratic)
   .enter().append("svg:svg")
@@ -77,6 +79,16 @@ function updateQuadratic() {
       .attr("class", "curve1");
   curveQuadratic.attr("d", lineQuadratic);
 
+  $(".dotQuadratic").remove()
+  var dotQuadratic = visQuadratic.selectAll("circle.dotQuartic")
+      .data(dotQuadraticPoints)
+      .enter().append("circle")
+      .attr("class", "dotQuadratic")
+    .attr("r",1.3)
+    .attr("cx", function(d,i) { return d.x; })
+    .attr("cy", function(d,i) { return d.y; });
+
+
 }
 
 function interpolateQuadratic(d, p) {
@@ -117,6 +129,7 @@ function getCurveQuadratic(d) {
       curve.push(x[x.length-1][0]);
     }
   }
+  dotQuadraticPoints = curve.slice(0, t / delta + 1);
   return [curve.slice(0, t / delta + 1)];
 }
 

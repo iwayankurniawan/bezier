@@ -9,6 +9,8 @@ var w = 200,
     n = 4,
     ordersCubic = d3.range(5, n + 2);
 
+var dotCubicPoints = {};
+
 var visCubic = d3.select("#canvasCubic").selectAll("svg")
     .data(ordersCubic)
   .enter().append("svg:svg")
@@ -76,6 +78,17 @@ function updateCubic() {
       .attr("class", "curve1");
   curveCubic.attr("d", lineCubic);
 
+  $(".dotCubic").remove()
+  var dotCubic = visCubic.selectAll("circle.dotCubic")
+      .data(dotCubicPoints)
+      .enter().append("circle")
+      .attr("class", "dotCubic")
+    .attr("r",1.3)
+    .attr("cx", function(d,i) { return d.x; })
+    .attr("cy", function(d,i) { return d.y; });
+
+
+
 }
 
 function interpolateCubic(d, p) {
@@ -116,6 +129,7 @@ function getCurveCubic(d) {
       curve.push(x[x.length-1][0]);
     }
   }
+  dotCubicPoints = curve.slice(0, t / delta + 1);
   return [curve.slice(0, t / delta + 1)];
 }
 

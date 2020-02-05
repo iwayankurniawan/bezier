@@ -2,10 +2,18 @@ var slider = document.getElementById("myRange");
 
 slider.oninput = function() {
   t = this.value;
+  dotLinearPoints = {};
+  dotQuadraticPoints = {};
+  dotCubicPoints = {};
+  dotQuarticPoints = {};
+
+
   updateLinear();
   updateQuadratic();
   updateCubic();
   updateQuartic();
+
+
 
 /*
       var dotlinear =  visQuartic.selectAll('circle.dot').append("circle")

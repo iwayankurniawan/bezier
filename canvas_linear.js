@@ -9,6 +9,8 @@ var w = 200,
     n = 4,
     ordersLinear = d3.range(5, n + 2);
 
+var dotLinearPoints = {};
+
 var visLinear = d3.select("#canvasLinear").selectAll("svg")
     .data(ordersLinear)
   .enter().append("svg:svg")
@@ -78,13 +80,14 @@ function updateLinear() {
       .attr("class", "curve1");
   curveLinear.attr("d", lineLinear);
 
-/*
-  visLinear.append("circle")
-    .data(getCurveLinear)
-    .attr("class", "dot").attr("r", 3)
-    .attr("cx", function(d){console.log(d);return d.x})
-    .attr("cy", function(d){return d.y});*/
-
+  $(".dotLinear").remove()
+  var dotLinear = visLinear.selectAll("circle.dotLinear")
+      .data(dotLinearPoints)
+      .enter().append("circle")
+      .attr("class", "dotLinear")
+    .attr("r",1.3)
+    .attr("cx", function(d,i) { return d.x; })
+    .attr("cy", function(d,i) { return d.y; });
 }
 
 
@@ -127,6 +130,7 @@ function getCurveLinear(d) {
       curve.push(x[x.length-1][0]);
     }
   }
+  dotLinearPoints = curve.slice(0, t / delta + 1);
   return [curve.slice(0, t / delta + 1)];
 }
 

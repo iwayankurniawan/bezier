@@ -1,31 +1,49 @@
 var slider = document.getElementById("myRange");
 
-slider.oninput = function() {
-  t = this.value;
-  dotLinearPoints = {};
-  dotQuadraticPoints = {};
-  dotCubicPoints = {};
-  dotQuarticPoints = {};
+$(document).ready(function(){
+    $('input[type=radio]').click(function(){
+        if (this.id == "complete"){
+            document.getElementById("inprogress").checked = false;
+            t = 1;
+            updateLinear();
+            updateQuadratic();
+            updateCubic();
+            updateQuartic();
+            slider.oninput = function() {
+              t = 1;
+              delta = this.value;
+              console.log(delta);
+              dotLinearPoints = {};
+              dotQuadraticPoints = {};
+              dotCubicPoints = {};
+              dotQuarticPoints = {};
+
+              updateLinear();
+              updateQuadratic();
+              updateCubic();
+              updateQuartic();
+            }
+        }
+    });
+});
 
 
-  updateLinear();
-  updateQuadratic();
-  updateCubic();
-  updateQuartic();
+$(document).ready(function(){
+    $('input[type=radio]').click(function(){
+        if (this.id == "inprogress"){
+            document.getElementById("complete").checked = false;
+            slider.oninput = function() {
+              t = this.value;
+              dotLinearPoints = {};
+              dotQuadraticPoints = {};
+              dotCubicPoints = {};
+              dotQuarticPoints = {};
 
-
-
-/*
-      var dotlinear =  visQuartic.selectAll('circle.dot').append("circle")
-          .data(getCurveLinear).enter()
-          .attr("class", "dot")
-          .attr("cx", function(d,i) {console.log(i); return d[i].x; })
-          .attr("cy", function(d,i) { return d[i].y; });
-
-          var dotlinear = visQuadratic.selectAll("path.curve1")
-              .data(getCurveQuadratic);
-          curveQuadratic.enter().append("svg:path")
-              .attr("class", "curve1");
-          curveQuadratic.attr("d", lineQuadratic);*/
-
-}
+              updateLinear();
+              updateQuadratic();
+              updateCubic();
+              updateQuartic();
+            }
+        }
+    });
+});

@@ -128,7 +128,6 @@ function getCurveQuartic(d) {
     }
   }
   dotQuarticPoints = curve.slice(0, t / delta + 1);
-  console.log(dotQuarticPoints);
   return [curve.slice(0, t / delta + 1)];
 }
 

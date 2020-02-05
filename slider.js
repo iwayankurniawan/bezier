@@ -7,7 +7,7 @@ slider.oninput = function() {
   updateCubic();
   updateQuartic();
 
-
+/*
       var dotlinear =  visQuartic.selectAll('circle.dot').append("circle")
           .data(getCurveLinear).enter()
           .attr("class", "dot")
@@ -18,5 +18,6 @@ slider.oninput = function() {
               .data(getCurveQuadratic);
           curveQuadratic.enter().append("svg:path")
               .attr("class", "curve1");
-          curveQuadratic.attr("d", lineQuadratic);
+          curveQuadratic.attr("d", lineQuadratic);*/
+
 }

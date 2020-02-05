@@ -1,6 +1,6 @@
 var w = 200,
     h = 300,
-    t = 0.5,
+    t = 0,
     delta = .01,
     padding = 10,
     pointsLinear = [{x: 20, y: 250}, {x: 20, y: 30}],

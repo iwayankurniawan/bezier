@@ -1,5 +1,6 @@
 var pointsLinear = [{x: 20, y: 250}, {x: 20, y: 30}],
-    bezierLinear = {},
+    bezierLinearComplete = {},
+    bezierLinearInprogress = {},
     lineLinear = d3.svg.line().x(x_Linear).y(y_Linear),
     n = 4,
     ordersLinear = d3.range(5, n + 2);
@@ -36,8 +37,15 @@ visLinear.selectAll("circle.control_Linear")
       .on("drag", function(d) {
         d.x = Math.min(w, Math.max(0, this.__origin__[0] += d3.event.dx));
         d.y = Math.min(h, Math.max(0, this.__origin__[1] += d3.event.dy));
-        bezierLinear = {};
-        updateLinear(getCurveLinear, dotLinearPoints);
+        bezierLinearComplete = {};
+        bezierLinearInprogress = {};
+
+        if (document.getElementById("complete").checked) {
+          updateLinear(getCurveLinearComplete, dotLinearPointsComplete);
+        }else{
+          updateLinear(getCurveLinear, dotLinearPoints);
+        }
+
         visLinear.selectAll("circle.control_Linear")
           .attr("cx", x_Linear)
           .attr("cy", y_Linear);
@@ -71,20 +79,21 @@ function updateLinear(getCurveLinearData, getDotLinearData) {
   pathLinear.attr("d", lineLinear);
 
   var curveLinear = visLinear.selectAll("path.curve1")
-      .data(getCurveLinearData);//getCurveLinear, dotLinearPoints
+      .data(getCurveLinearData);
   curveLinear.enter().append("svg:path")
       .attr("class", "curve1");
   curveLinear.attr("d", lineLinear);
 
   $(".dotLinear").remove()
+
   var dotLinear = visLinear.selectAll("circle.dotLinear")
-      .data(getDotLinearData)//dotLinearPoints
+      .data(getDotLinearData)
       .enter().append("circle")
       .attr("class", "dotLinear")
     .attr("r",1.3)
     .attr("cx", function(d,i) { return d.x; })
     .attr("cy", function(d,i) { return d.y; });
-  
+
 }
 
 
@@ -117,9 +126,9 @@ function getLevelsForlineLinear(d, t_) {
 }
 
 function getCurveLinear(d) {
-  var curve = bezierLinear[d];
+  var curve = bezierLinearInprogress[d];
   if (!curve) {
-    curve = bezierLinear[d] = [];
+    curve = bezierLinearInprogress[d] = [];
     for (var t_=0; t_<=1; t_+=delta) {
       var x = getLevelsLinear(d, t_);
       curve.push(x[x.length-1][0]);
@@ -130,9 +139,9 @@ function getCurveLinear(d) {
 }
 
 function getCurveLinearComplete(d) {
-  var curve = bezierLinear[d];
+  var curve = bezierLinearComplete[d];
   if (document.getElementById("complete").checked) {
-    curve = bezierLinear[d] = [];
+    curve = bezierLinearComplete[d] = [];
     for (var t_=0; t_<=1; t_+=delta) {
       var x = getLevelsLinear(d, t_);
       curve.push(x[x.length-1][0]);

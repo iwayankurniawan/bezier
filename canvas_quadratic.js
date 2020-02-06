@@ -1,7 +1,5 @@
 var w = 200,
-    h = 300,
-    t = 0,
-    delta = .01,
+    h = 300
     padding = 10,
     pointsQuadratic = [{x: 20, y: 250}, {x: 20, y: 30},{x: 100, y: 20}],
     bezierQuadratic = {},

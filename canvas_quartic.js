@@ -1,7 +1,5 @@
 var w = 200,
     h = 300,
-    t = 0,
-    delta = .01,
     padding = 10,
     pointsQuartic = [{x: 20, y: 250}, {x: 20, y: 30},{x: 100, y: 20},{x:150,y:150},{x:175,y:230}],
     bezierQuartic = {},
@@ -131,17 +129,6 @@ function getCurveQuartic(d) {
   return [curve.slice(0, t / delta + 1)];
 }
 
-function getCurveQuartic1(d) {
-  var curve = bezierQuartic[d];
-  if (!curve) {
-    curve = bezierQuartic[d] = [];
-    for (var t_=0; t_<=1; t_+=delta) {
-      var x = getLevelsQuartic(d, t_);
-      curve.push(x[x.length-1][0]);
-    }
-  }
-  return curve.slice(0, t / delta + 1);
-}
 
 function x_Quartic(d) { return d.x; }
 function y_Quartic(d) { return d.y; }

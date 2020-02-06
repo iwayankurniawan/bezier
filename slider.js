@@ -5,20 +5,24 @@ $(document).ready(function(){
         if (this.id == "complete"){
             document.getElementById("inprogress").checked = false;
             t = 1;
-            updateLinear();
+            
+            updateLinear(getCurveLinear, dotLinearPoints);
             updateQuadratic();
             updateCubic();
             updateQuartic();
+
+            /*
+            dotLinearPoints = {};
+            dotQuadraticPoints = {};
+            dotCubicPoints = {};
+            dotQuarticPoints = {};
+            */
+
             slider.oninput = function() {
               t = 1;
-              delta = this.value;
-              console.log(delta);
-              dotLinearPoints = {};
-              dotQuadraticPoints = {};
-              dotCubicPoints = {};
-              dotQuarticPoints = {};
+              delta = 0.11-(this.value/10);
 
-              updateLinear();
+              updateLinear(getCurveLinearComplete, dotLinearPointsComplete);
               updateQuadratic();
               updateCubic();
               updateQuartic();
@@ -34,12 +38,7 @@ $(document).ready(function(){
             document.getElementById("complete").checked = false;
             slider.oninput = function() {
               t = this.value;
-              dotLinearPoints = {};
-              dotQuadraticPoints = {};
-              dotCubicPoints = {};
-              dotQuarticPoints = {};
-
-              updateLinear();
+              updateLinear(getCurveLinear, dotLinearPoints);
               updateQuadratic();
               updateCubic();
               updateQuartic();

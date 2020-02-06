@@ -74,7 +74,7 @@ function updateLinear(getCurveLinearData, getDotLinearData) {
   var pathLinear = interpolationLinear.selectAll("path")
       .data(function(d) {return [d];});
   pathLinear.enter().append("svg:path")
-      .attr("class", "lineLinear")
+      .attr("class", "line")
       .attr("d", lineLinear);
   pathLinear.attr("d", lineLinear);
 

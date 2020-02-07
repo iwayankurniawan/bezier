@@ -38,7 +38,50 @@
     font-weight: 400;
     font-size: 1em;
   }
+  .svgcanvas{
+    height:300px;
+  }
+  .title{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
+  .name{
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
+  .explanation{
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+  }
+  .canvasTitle{
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+  }
+  .sliderContainer{
+    padding-top: 30px;
+    text-align: center;
+    width: 100%;
+
+  }
+  .resetButton{
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+  }
+  .radiobox{
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 30px;
+  }
 </style>
+
 <body>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 
@@ -47,27 +90,49 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 	<div class="container">
-    <div class="row slidecontainer">
-      <input type="range" min="0.01" max="1" value="0" step="0.01" class="slider" id="myRange">
-      <form>
-        <input type="radio" name="complete" id="complete">Complete<br>
-        <input type="radio" name="inprogress" id="inprogress">inprogress<br>
-      </form>
+    <div class="row">
+      <p class="title">Bezier Curves</p>
+    </div>
+    <div class="row">
+      <p class="name">Sidharth Kumar </p>
+    </div>
+    <div class="row">
+      <p class="explanation">A Bezier curve is a parametric curve used in computer graphics and related fields. The curve, which is related to the Bernstein Polynomial, is named after Pierre Bezier, who used it in the 1960s for designing curves for the bodywork of Renault Cars. Other uses include the design of computer fonts and animation. Bezier curves can be combined to form a Bezier spline, or generalized to higher dimensions to form Bezier surfaces. The Bezier triangle is a special case of the latter</p>
     </div>
 	  <div class="row">
-	    <div class="col-sm" id="canvasLinear">
-	      Linear
-	    </div>
-	    <div class="col-sm" id="canvasQuadratic">
-	      Quadratic
-	    </div>
-	    <div class="col-sm" id="canvasCubic">
-	      Cubic
-	    </div>
-			<div class="col-sm" id="canvasQuartic">
-	      Quartic
-	    </div>
+      <div class="col-sm-3">
+        <div class="row"><p class="canvasTitle">Linear</p></div>
+        <div class="row svgcanvas" id="canvasLinear"></div>
+      </div>
+      <div class="col-sm-3">
+        <div class="row"><p class="canvasTitle">Quadratic</p></div>
+        <div class="row svgcanvas" id="canvasQuadratic"></div>
+      </div>
+      <div class="col-sm-3">
+        <div class="row"><p class="canvasTitle">Cubic</p></div>
+        <div class="row svgcanvas" id="canvasCubic"></div>
+      </div>
+      <div class="col-sm-3">
+        <div class="row"><p class="canvasTitle">Quartic</p></div>
+        <div class="row svgcanvas" id="canvasQuartic"></div>
+      </div>
 	  </div>
+    <div class="row">
+      <div class="sliderContainer">
+          Number of points:  <input type="range" min="0.01" max="1" value="0" step="0.01" class="slider" id="myRange">
+      </div>
+    </div>
+    <div class="row">
+      <div class="resetButton">
+        <button type="button" name="button" id="resetButton" onclick="resetFunction()">Reset Position of Control Points</button>
+      </div>
+    </div>
+    <div class="row">
+      <form class="radiobox">
+        <input type="radio" name="complete" id="complete">  Complete<br>
+        <input type="radio" name="inprogress" id="inprogress">  Inprogress<br>
+      </form>
+    </div>
 	</div>
 
   <script src="globalVariable.js"></script>
@@ -75,8 +140,7 @@
   <script src="canvas_quadratic.js"></script>
   <script src="canvas_cubic.js"></script>
   <script src="canvas_quartic.js"></script>
-  <script src="slider.js"></script>
-  <script src="radiobox.js"></script>
+  <script src="control.js"></script>
 
 </body>
 </html>

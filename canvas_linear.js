@@ -4,65 +4,78 @@ var pointsLinear = [{x: 20, y: 250}, {x: 20, y: 30}],
     lineLinear = d3.svg.line().x(x_Linear).y(y_Linear),
     n = 4,
     ordersLinear = d3.range(5, n + 2);
-
+    
+var visLinear;
 var dotLinearPoints = {};
 var dotLinearPointsComplete = {};
 
-var visLinear = d3.select("#canvasLinear").selectAll("svg")
+var startTheLinear = d3.select("#canvasLinear").selectAll("svg")
     .data(ordersLinear)
-  .enter().append("svg:svg")
+    .enter()
+    .append("svg:svg")
     .attr("width", w + 2 * padding)
-    .attr("height", h + 2 * padding)
-  .append("svg:g")
-    .attr("transform", "translate(" + padding + "," + padding + ")");
+    .attr("height",topBorder + h + 2 * padding)
+    .attr("transform", "translate(" + padding + "," + topBorder + ")");
 
-visLinear.append("rect")
-    .attr("width", "100%")
-    .attr("height", "100%")
-    .attr("fill", "pink");
+    startTheLinear.append("rect")
+        .attr("width", w + 2 * padding)
+        .attr("height",  h + 2 * padding)
+        .attr("fill", "#b0aa99")
+        .attr("stroke", "black")
+        .attr("stroke-width", 2);
 
-updateLinear(getCurveLinear, dotLinearPoints);
+startLinear();
 
-visLinear.selectAll("circle.control_Linear")
-    .data(function(d) {return pointsLinear.slice(0, d) })
-  .enter().append("svg:circle")
-    .attr("class", "control_Linear")
-    .attr("r", 17)
-    .attr("cx", x_Linear)
-    .attr("cy", y_Linear)
-    .call(d3.behavior.drag()
-      .on("dragstart", function(d) {
-        this.__origin__ = [d.x, d.y];
-      })
-      .on("drag", function(d) {
-        d.x = Math.min(w, Math.max(0, this.__origin__[0] += d3.event.dx));
-        d.y = Math.min(h, Math.max(0, this.__origin__[1] += d3.event.dy));
-        bezierLinearComplete = {};
-        bezierLinearInprogress = {};
+function startLinear () {
+  visLinear = startTheLinear.append("svg:g")
+              .attr("id","reset")
+              .attr("transform", "translate(" + padding + "," + padding + ")");
 
-        if (document.getElementById("complete").checked) {
-          updateLinear(getCurveLinearComplete, dotLinearPointsComplete);
-        }else{
-          updateLinear(getCurveLinear, dotLinearPoints);
-        }
+  updateLinear(getCurveLinear, dotLinearPoints);
 
-        visLinear.selectAll("circle.control_Linear")
-          .attr("cx", x_Linear)
-          .attr("cy", y_Linear);
-      })
-      .on("dragend", function() {
-        delete this.__origin__;
-      }));
+  visLinear.selectAll("circle.control_Linear")
+      .data(function(d) {return pointsLinear.slice(0, d) })
+      .enter().append("svg:circle")
+      .attr("class", "control_Linear")
+      .attr("r", 6)
+      .attr("cx", x_Linear)
+      .attr("cy", y_Linear)
+      .call(d3.behavior.drag()
+        .on("dragstart", function(d) {
+          this.__origin__ = [d.x, d.y];
+        })
+        .on("drag", function(d) {
+          d.x = Math.min(w, Math.max(0, this.__origin__[0] += d3.event.dx));
+          d.y = Math.min(h, Math.max(0, this.__origin__[1] += d3.event.dy));
+          bezierLinearComplete = {};
+          bezierLinearInprogress = {};
+
+          if (document.getElementById("complete").checked) {
+            updateLinear(getCurveLinearComplete, dotLinearPointsComplete);
+          }else{
+            updateLinear(getCurveLinear, dotLinearPoints);
+          }
+
+          visLinear.selectAll("circle.control_Linear")
+            .attr("cx", x_Linear)
+            .attr("cy", y_Linear);
+        })
+        .on("dragend", function() {
+          delete this.__origin__;
+        }));
 
 
-var last = 0;
+  var last = 0;
 
-//Timer to make it automate
-/*d3.timer(function(elapsed) {
-  t = (t + (elapsed - last) / 5000) % 1;
-  last = elapsed;
-  //updateLinear();
-});*/
+  //Timer to make it automate
+  /*d3.timer(function(elapsed) {
+    t = (t + (elapsed - last) / 5000) % 1;
+    last = elapsed;
+    //updateLinear();
+  });*/
+
+}
+
 
 function updateLinear(getCurveLinearData, getDotLinearData) {
   var interpolationLinear = visLinear.selectAll("g")
@@ -154,7 +167,7 @@ function getCurveLinearComplete(d) {
 function x_Linear(d) { return d.x; }
 function y_Linear(d) { return d.y; }
 function colour(d, i) {
-  return d.length > 1 ? ["#ccc", "yellow", "blue", "green"][i] : "red";
+  return d.length > 1 ? ["#000", "yellow", "blue", "green"][i] : "red";
 }
 
 var static = function(event) { event.preventDefault(); }

@@ -167,9 +167,9 @@ function getCurveQuadraticComplete(d) {
   var curve = bezierQuadraticComplete[d];
   if (document.getElementById("complete").checked) {
     curve = bezierQuadraticComplete[d] = [];
-    for (var t_ = 0; t_ <= 1; t_ += delta) {
-      var x = getLevelsQuadratic(d, t_);
-      curve.push(x[x.length - 1][0]);
+    for (var t_=0; t_<=(delta*100); t_+=1) {
+      var x = getLevelsQuadratic(d, t_/(delta*100));
+      curve.push(x[x.length-1][0]);
     }
   }
   dotQuadraticPointsComplete = curve;

@@ -4,7 +4,8 @@ $(document).ready(function(){
   $('input[type=radio]').click(function(){
     if (this.id == "complete"){
 
-        delta = 0.11 - (slider.value/10);
+        //delta = 0.11 - (slider.value/10);
+        delta = slider.value;
         updateLinear(getCurveLinearComplete, dotLinearPointsComplete);
         updateLinear(getCurveLinearComplete, dotLinearPointsComplete);
         updateQuadratic(getCurveQuadraticComplete, dotQuadraticPointsComplete);
@@ -13,15 +14,9 @@ $(document).ready(function(){
         updateCubic(getCurveCubicComplete, dotCubicPointsComplete);
         updateQuartic(getCurveQuarticComplete, dotQuarticPointsComplete);
         updateQuartic(getCurveQuarticComplete, dotQuarticPointsComplete);
-        document.getElementById("inprogress").checked = false;
+        updateQuartic(getCurveQuarticComplete, dotQuarticPointsComplete);
 
-        slider.oninput = function() {
-          delta = 0.11 - (this.value/10);
-          updateLinear(getCurveLinearComplete, dotLinearPointsComplete);
-          updateQuadratic(getCurveQuadraticComplete, dotQuadraticPointsComplete);
-          updateCubic(getCurveCubicComplete, dotCubicPointsComplete);
-          updateQuartic(getCurveQuarticComplete, dotQuarticPointsComplete);
-        }
+        document.getElementById("inprogress").checked = false;
       }
   });
 });
@@ -32,7 +27,7 @@ $(document).ready(function(){
           bezierLinearInprogress = {};
           bezierQuadraticInprogress = {};
           bezierCubicInprogress = {};
-          bezierQuarticComplete = {};
+          bezierQuarticInprogress = {};
 
           delta = 0.01;
           t = slider.value;
@@ -47,15 +42,6 @@ $(document).ready(function(){
           updateQuartic(getCurveQuartic, dotQuarticPoints);
 
           document.getElementById("complete").checked = false;
-
-          slider.oninput = function() {
-            t = this.value;
-
-            updateLinear(getCurveLinear, dotLinearPoints);
-            updateQuadratic(getCurveQuadratic, dotQuadraticPoints);
-            updateCubic(getCurveCubic, dotCubicPoints);
-            updateQuartic(getCurveQuartic, dotQuarticPoints);
-          }
         }
     });
 });
@@ -99,5 +85,26 @@ function resetFunction() {
     updateCubic(getCurveCubic, dotCubicPoints);
     updateQuartic(getCurveQuartic, dotQuarticPoints);
     updateQuartic(getCurveQuartic, dotQuarticPoints);
+  }
+}
+
+slider.oninput = function() {
+  if(document.getElementById("inprogress").checked){
+  t = this.value;
+  updateLinear(getCurveLinear, dotLinearPoints);
+  updateQuadratic(getCurveQuadratic, dotQuadraticPoints);
+  updateCubic(getCurveCubic, dotCubicPoints);
+  updateQuartic(getCurveQuartic, dotQuarticPoints);
+
+}else if (document.getElementById("complete").checked) {
+  delta = this.value;
+  updateLinear(getCurveLinearComplete, dotLinearPointsComplete);
+  updateQuadratic(getCurveQuadraticComplete, dotQuadraticPointsComplete);
+  updateCubic(getCurveCubicComplete, dotCubicPointsComplete);
+  updateQuartic(getCurveQuarticComplete, dotQuarticPointsComplete);
+  updateLinear(getCurveLinearComplete, dotLinearPointsComplete);
+  updateQuadratic(getCurveQuadraticComplete, dotQuadraticPointsComplete);
+  updateCubic(getCurveCubicComplete, dotCubicPointsComplete);
+  updateQuartic(getCurveQuarticComplete, dotQuarticPointsComplete);
   }
 }

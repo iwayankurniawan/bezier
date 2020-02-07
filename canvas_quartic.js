@@ -152,8 +152,8 @@ var pointsQuartic = [{x: 20, y: 250}, {x: 20, y: 30},{x: 100, y: 20},{x:150,y:15
     var curve = bezierQuarticComplete[d];
     if (document.getElementById("complete").checked) {
     curve = bezierQuarticComplete[d] = [];
-    for (var t_=0; t_<=1; t_+=delta) {
-      var x = getLevelsQuartic(d, t_);
+    for (var t_=0; t_<=(delta*100); t_+=1) {
+      var x = getLevelsQuartic(d, t_/(delta*100));
       curve.push(x[x.length-1][0]);
     }
     }

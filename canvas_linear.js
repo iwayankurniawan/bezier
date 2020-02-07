@@ -156,8 +156,8 @@ function getCurveLinearComplete(d) {
   var curve = bezierLinearComplete[d];
   if (document.getElementById("complete").checked) {
     curve = bezierLinearComplete[d] = [];
-    for (var t_=0; t_<=1; t_+=delta) {
-      var x = getLevelsLinear(d, t_);
+    for (var t_=0; t_<=(delta*100); t_+=1) {
+      var x = getLevelsLinear(d, t_/(delta*100));
       curve.push(x[x.length-1][0]);
     }
   }

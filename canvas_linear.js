@@ -4,10 +4,11 @@ var pointsLinear = [{x: 20, y: 250}, {x: 20, y: 30}],
     lineLinear = d3.svg.line().x(x_Linear).y(y_Linear),
     n = 4,
     ordersLinear = d3.range(5, n + 2);
-    
+
 var visLinear;
 var dotLinearPoints = {};
 var dotLinearPointsComplete = {};
+
 
 var startTheLinear = d3.select("#canvasLinear").selectAll("svg")
     .data(ordersLinear)

@@ -5,23 +5,30 @@ var pointsQuartic = [{x: 20, y: 250}, {x: 20, y: 30},{x: 100, y: 20},{x:150,y:15
     n = 4,
     ordersQuartic = d3.range(5, n + 2);
 
+    var visQuartic;
     var dotQuarticPoints = {};
     var dotQuarticPointsComplete = {};
 
-    var visQuartic = d3.select("#canvasQuartic").selectAll("svg")
+    var startTheQuartic = d3.select("#canvasQuartic").selectAll("svg")
     .data(ordersQuartic)
     .enter().append("svg:svg")
     .attr("width", w + 2 * padding)
     .attr("height",topBorder + h + 2 * padding)
-    .append("svg:g")
       .attr("transform", "translate(" + padding + "," + topBorder + ")");
 
-    visQuartic.append("rect")
+    startTheQuartic.append("rect")
         .attr("width", w + 2 * padding)
         .attr("height",  h + 2 * padding)
         .attr("fill", "#a4c6f5")
         .attr("stroke", "black")
         .attr("stroke-width", 2);
+
+    startQuartic();
+
+    function startQuartic(){
+      visQuartic = startTheQuartic.append("svg:g")
+                  .attr("id","reset")
+                  .attr("transform", "translate(" + padding + "," + padding + ")");
 
     updateQuartic(getCurveQuartic, dotQuarticPoints);
 
@@ -65,6 +72,7 @@ var pointsQuartic = [{x: 20, y: 250}, {x: 20, y: 30},{x: 100, y: 20},{x:150,y:15
     last = elapsed;
     //updateQuartic();
     });*/
+  }
 
     function updateQuartic(getCurveQuarticData, getDotQuarticData) {
     var interpolationQuartic = visQuartic.selectAll("g")

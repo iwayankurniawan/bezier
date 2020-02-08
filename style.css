@@ -1,0 +1,73 @@
+svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.curve, .line {
+  fill: none;
+  stroke-width: 1px;
+}
+.curve {
+  stroke: red;
+  stroke-width: 3px;
+}
+.curve1, .line1 {
+  fill: none;
+  stroke-width: 1px;
+}
+.curve1 {
+  stroke: red;
+  stroke-width: 3px;
+}
+.control {
+  fill: #ccc;
+  stroke: #000;
+  stroke-width: .5px;
+}
+.t, .controltext {
+  font-family: "Yanone Kaffeesatz";
+  font-weight: 400;
+  font-size: 1em;
+}
+.svgcanvas{
+  height:300px;
+}
+.title{
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+.name{
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+.explanation{
+  font-size: 12px;
+  text-align: center;
+  width: 100%;
+}
+.canvasTitle{
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+}
+.sliderContainer{
+  padding-top: 30px;
+  text-align: center;
+  width: 100%;
+
+}
+.resetButton{
+  padding-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+.radiobox{
+  padding-top: 20px;
+  text-align: center;
+  width: 100%;
+  padding-bottom: 30px;
+}

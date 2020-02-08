@@ -1,3 +1,5 @@
+//-------------This script use for controlling all radio button and slider, consist with function to call and update other function in canvas-----------
+
 var slider = document.getElementById("myRange"); //initialize slider element
 
 //-------------------------------When radio button for complete function clicked, go to this function
